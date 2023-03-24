@@ -1,10 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import css from '../Button/Button.module.css';
 import PropTypes from 'prop-types';
 
-const Button = () => {};
+const Button = ({ onHandleClick }) => {
+  return (
+    <button
+      className={css.button}
+      type="button"
+      onClick={() => onHandleClick()}
+    >
+      Load more
+    </button>
+  );
+};
 
 export default Button;
 
 Button.propTypes = {
-  //   onSubmit: PropTypes.func.isRequired,
+  onHandleClick: PropTypes.func.isRequired,
 };
