@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import css from '../Loader/Loader.module.css';
-import PropTypes from 'prop-types';
 
 const Loader = () => {
   return (
@@ -22,7 +21,3 @@ const Loader = () => {
 };
 
 export default Loader;
-
-Loader.propTypes = {
-  //   onSubmit: PropTypes.func.isRequired,
-};
