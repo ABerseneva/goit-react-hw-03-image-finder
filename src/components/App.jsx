@@ -15,26 +15,21 @@ export class App extends Component {
     cuurentPage: 1,
   };
 
-  handleGetImages = () => {
-    this.setState({ status: 'pending' });
-    getImages(this.state.searchQuery)
+  componentDidMount() {
+    getImages(this.state.searchQuery, this.state.cuurentPage)
       .then(response =>
         this.setState({ images: response.data.hits, status: 'resolved' })
       )
       .catch(error =>
         this.setState({ error: error.message, status: 'rejected' })
       );
-  };
-
-  componentDidMount() {
-    this.handleGetImages();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.searchQuery !== this.state.searchQuery) {
-      this.handleGetImages();
-    }
-    if (prevState.cuurentPage !== this.state.cuurentPage) {
+    if (
+      prevState.searchQuery !== this.state.searchQuery ||
+      prevState.cuurentPage !== this.state.cuurentPage
+    ) {
       getImages(this.state.searchQuery, this.state.cuurentPage)
         .then(response =>
           this.setState(prevState => ({
@@ -49,7 +44,7 @@ export class App extends Component {
   }
 
   handleSubmit = searchQuery => {
-    this.setState({ searchQuery });
+    this.setState({ searchQuery, images: [], cuurentPage: 1 });
   };
 
   loadMore = () => {
